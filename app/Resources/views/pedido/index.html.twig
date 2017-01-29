@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div class="container">
+            <div class="page-header">
+                <h1>Pedidos
+                    <span class="small pull-right"><a href="{{action}}">Adicionar</a></span>
+                </h1>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    {% if pedidos %}
+
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Id</th>
+                                <th>Titulo</th>
+                                <th>Ações</th>
+                            </tr>
+                            {% for pedido in pedidos %}
+                                <tr>
+                                    <td>{{ pedido.id }}</td>
+                                    <td>{{ pedido.titulo }}</td>
+                                    <td><a href="#">Editar</a> <a href="/pedidos/delete/{{pedido.id}}">Excluir</a></td>
+                                </tr>
+                            {% else %}
+                                Nenhum pedido encontrado
+                            {% endfor %}
+                        </table>
+                    {% else %}
+                        <p class="text-bold">Nenhum pedido encontrado</p>
+                    {% endif %}
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}

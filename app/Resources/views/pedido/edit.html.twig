@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div class="container">
+            <div class="page-header">
+                <h1>Pedido</h1>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    {% if pedido %}
+
+                        <form action="{{action}}" method="POST" >
+                            <input type="hidden" name="id" value="{{ pedido.id }}">
+
+                            <div class="form-group">
+                                <label for="">Titulo:</label>
+                                <input type="text" name="titulo" class="form-control" placeholder="Título" value="{{ pedido.titulo }}">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            <a href="/pedido" class="btn btn-default">Voltar</a>
+
+                        </form>
+                    {% else %}
+                        Nenhum pedido encontrado            
+                        <a href="/pedido" class="btn btn-default">Voltar</a>
+
+                    {% endif %}
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}

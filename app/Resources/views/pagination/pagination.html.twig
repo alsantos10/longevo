@@ -1,0 +1,27 @@
+{% if pagination and pagination.totalPages > 0 %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li {% if pagination.currentPage == 1 %} class="disabled" {% endif %}>
+                <a href="{{ url_base }}{{ pagination.firstPage>1?'/':'' }}{{ pagination.firstPage > 1 ? pagination.firstPage : '' }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+
+            {% for item in pagination.pages %}                
+                {% if pagination.currentPage == item %}
+                    <li class="active">
+                        <span>{{ item }} <span class="sr-only">(current)</span></span>
+                    </li>
+                {% else %}
+                    <li><a href="{{ url_base }}{{ item>1?'/':'' }}{{ item > 1 ? item : '' }}">{{ item }}</a></li>                
+                {% endif %}                
+            {% endfor %}
+
+            <li {% if pagination.lastPage == pagination.currentPage %} class="disabled" {% endif %}>
+                <a href="{{ url_base }}{{ pagination.lastPage > 1?'/':'' }}{{ pagination.lastPage > 1 ? pagination.lastPage : '' }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+{% endif %}

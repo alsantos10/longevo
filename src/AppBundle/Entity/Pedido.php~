@@ -1,0 +1,30 @@
+<?php
+
+namespace AppBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="pedidos")
+ */
+class Pedido
+{
+    /**
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $numero;
+    /**
+     * Many Pedidos have One Cliente.
+     * @ORM\ManyToOne(targetEntity="Cliente")
+     * @ORM\JoinColumn(name="cliente_id", referencedColumnName="id")
+     */
+    private $cliente;
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $observacao;
+
+
+}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div class="container">
+            <div class="page-header">
+                <h1>Atendimento ao cliente</h1>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="{{action}}" method="POST" id="formchamado" >
+                        <input type="hidden" name="id" value="{% if chamado %} {{chamado.id}} {% endif %}">
+                        <input type="hidden" name="cliente_id" value="{% if chamado %} {{chamado.cliente.id}} {% endif %}">
+
+                        <div class="form-group">
+                            <label for="">Número do Pedido:</label>
+                            <input type="number" name="numero" class="form-control" required="required" placeholder="Numero do Pedido" value="{% if chamado and chamado.pedido %} {{chamado.pedido.id}} {% endif %}">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Titulo:</label>
+                            <input type="text" name="titulo" class="form-control" required="required" placeholder="Titulo" value="{% if chamado and chamado.pedido %} {{chamado.pedido.titulo}} {% endif %}" >
+                        </div>
+                        <div class="form-group">
+                            <label for="">Email:</label>
+                            <input type="email" name="email" class="form-control" required="required" placeholder="Email" value="{% if chamado %} {{chamado.cliente.email}} {% endif %}">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Nome do cliente:</label>
+                            <input type="text" name="nome" class="form-control" required="required" placeholder="Nome do Cliente" value="{% if chamado %} {{chamado.cliente.nome}} {% endif %}">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Observação:</label>
+                            <textarea name="observacao" class="form-control" required="required" placeholder="Comentarios aqui" required="required" cols="3">{% if chamado %} {{chamado.observacao}} {% endif %}</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <a href="/" class="btn btn-default">Voltar</a>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}

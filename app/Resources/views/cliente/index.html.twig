@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div class="container">
+            <div class="page-header">
+                <h1>Clientes
+                    <span class="small pull-right"><a href="{{action}}">Adicionar</a></span>
+                </h1>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    {% if clientes %}
+
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Ações</th>
+                            </tr>
+                            {% for cliente in clientes %}
+                                <tr>
+                                    <td>{{ cliente.nome }}</td>
+                                    <td>{{ cliente.email }}</td>
+                                    <td><a href="#">Editar</a> <a href="#">Excluir</a></td>
+                                </tr>
+                            {% else %}
+                                Nenhum cliente encontrado
+                            {% endfor %}
+                        </table>
+                    {% else %}
+                        <p class="text-bold">Nenhum cliente encontrado</p>
+                    {% endif %}
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}

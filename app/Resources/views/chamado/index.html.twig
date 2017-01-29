@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div class="container">
+            <div class="page-header">
+                <h1>Atendimento ao cliente</h1>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <form action="{{action}}" method="POST" class="form-inline">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="number" name="filter_numero" class="form-control" placeholder="Numero do pedido...">
+                            </div>
+                            <div class="input-group">
+                                <input type="email" name="filter_email" class="form-control" placeholder="Email do Cliente...">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search" aria-hidden="true"></i> Buscar</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="page-header">
+                    <h2>Chamados
+                        <span class="small pull-right"><a href="{{action_add}}">Adicionar</a></span>
+                    </h2>
+                    {% if filters %}
+                    <p>Filtrar por: 
+                        <span class="badge">Email: {{ filters.email }}</span> 
+                        <span class="badge">Numero do pedido: {{ filters.pedido }}</span>
+                    </p>
+                    {% endif %}
+                </div>
+
+
+                <div class="col-md-12">
+
+                    {% if chamados %}
+
+                        <table class="table table-bordered display" id="lista">
+                            <tr>
+                                <th></th>
+                                <th>Cliente</th>
+                                <th>Email</th>
+                                <th>Pedido</th>
+                                <th>Titulo</th>
+                                <th>Observação</th>
+                                <th>Ações</th>
+                            </tr>
+                            {% for chamado in chamados %}
+                                <tr>
+                                    <td>{{ chamado.id }}</td>
+                                    <td>{{ chamado.cliente.nome }}</td>
+                                    <td>{{ chamado.cliente.email }}</td>
+                                    <td>{{ chamado.pedido.id }}</td>
+                                    <td>{{ chamado.pedido.titulo }}</td>
+                                    <td>{{ chamado.observacao }}</td>
+                                    <td><a href="/show/{{ chamado.id }}">Exibir</a></td>
+                                </tr>
+                            {% else %}
+                                Nenhum chamado encontrado
+                            {% endfor %}
+                        </table>
+                    {% else %}
+                        <p class="text-bold">Nenhum chamado encontrado</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% include 'pagination/pagination.html.twig' %}
+
+        </div>
+    </div>
+{% endblock %}
+
+
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}
